@@ -1,7 +1,7 @@
 {
-  "name": "collector",
+  "name": "@erriy/collector",
   "author": "erriy <erriy@msn.com>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "homepage": "https://github.com/Erriy/collector#readme",
   "bugs": {

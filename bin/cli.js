@@ -10,8 +10,8 @@ inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
 const program = new commander.Command('collector');
 
-async function search_resource (name) {
-    const result = await collector.search(name);
+async function search_resource (name, routes) {
+    const result = await collector.search(name, routes);
 
     const entries = {};
     for(let r in result) {
@@ -91,8 +91,9 @@ async function download (route, res_name, dobj, options) {
 program
     .argument('<name>')
     .option('-o,--output <string>', '指定下载目录', path.join(process.env.HOME || process.env.USERPROFILE, 'Downloads'))
+    .option('-r,--route <...string>', '指定使用的route')
     .action(async (name, opts)=>{
-        const resource = await search_resource(name);
+        const resource = await search_resource(name, opts.route);
         const result = await select_sub_data(resource.route, resource.target);
         await download(resource.route, resource.target.name, result, opts);
     });
